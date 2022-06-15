@@ -1,14 +1,13 @@
 import { StyleSheet } from "react-native";
-import Colors from "../../utils/colors";
 
 export default StyleSheet.create({
     title: { 
         fontSize: 24,
         fontWeight: 'bold',
-        color: Colors.accent500,
+        color: '#f0f0f0',
         textAlign:'center',
         borderWidth: 2,
-        borderColor: Colors.accent500,
+        borderColor: '#f0f0f0',
         padding: 12
     }
 });

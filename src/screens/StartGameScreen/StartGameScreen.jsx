@@ -2,7 +2,7 @@ import { Alert, TextInput, View } from "react-native";
 import { useState } from "react";
 
 import styles from "./StartGameScreen.style";
-import MainButton from "../../components/MainButton/MainButton";
+import MainButton from "../../components/UI/MainButton/MainButton";
 
 
 export default function StatGameScreen({onPickNumber}) {
@@ -20,10 +20,9 @@ export default function StatGameScreen({onPickNumber}) {
         const chosenNumber = parseInt(eneteredNumber);
         console.log(eneteredNumber)
         if(isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber >= 100) {
-            
             Alert.alert('Invalid Input',
-            'Number has to be a number between 1 and 99',
-            [{text:'Okay',style:'destructive',onPress: resetInputHandler }]
+                'Number has to be a number between 1 and 99',
+                [{text:'Okay',style:'destructive',onPress: resetInputHandler }]
             );
             return;
         }

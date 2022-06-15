@@ -12,6 +12,7 @@ export default function App() {
   function pickedNumberHandler(pickedNumber){ 
     setUserNumber(pickedNumber);
   }
+
   //yay,i know inline styles is bad but i too lazy for make stylesheet object:)
   return (
       <LinearGradient colors={[Colors.primary700,Colors.accent500]} style={{flex:1}}>
@@ -23,7 +24,7 @@ export default function App() {
         > 
           <SafeAreaView style={{flex:1}}>
             { userNumber ?
-              <GameScreen /> :
+              <GameScreen userNumber={userNumber}/> :
               <StatGameScreen onPickNumber={pickedNumberHandler} />
             } 
           </SafeAreaView>
