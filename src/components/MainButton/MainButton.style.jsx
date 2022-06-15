@@ -1,8 +1,9 @@
 import { StyleSheet } from "react-native";
+import Colors from "../../utils/colors";
 
 export default StyleSheet.create({
     buttonInnerContainer: { 
-        backgroundColor: '#72063c',
+        backgroundColor: Colors.primary500,
         paddingVertical: 8,
         paddingHorizontal: 16,
         elevation: 2 

@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import Colors from "../../utils/colors";
 
 export default StyleSheet.create({
     inputContainer: {
@@ -6,7 +7,7 @@ export default StyleSheet.create({
         alignItems: 'center',
         marginTop: 100,
         padding: 16,
-        backgroundColor: '#3b021f',
+        backgroundColor: Colors.primary800,
         marginHorizontal: 24,
         borderRadius: 8,
         elevation: 8,
@@ -23,9 +24,9 @@ export default StyleSheet.create({
         height: 50,
         width: 50,
         fontSize: 32,
-        borderBottomColor: '#ddb52f',
+        borderBottomColor: Colors.accent500,
         borderBottomWidth: 2,
-        color: '#ddb52f',
+        color: Colors.accent500,
         marginVertical: 8,
         fontWeight: 'bold',
         textAlign: 'center'
