@@ -21,7 +21,6 @@ export default function StatGameScreen({onPickNumber}) {
 
     function confirmInputHandler(){
         const chosenNumber = parseInt(eneteredNumber);
-        console.log(eneteredNumber)
         if(isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber >= 100) {
             Alert.alert('Invalid Input',
                 'Number has to be a number between 1 and 99',

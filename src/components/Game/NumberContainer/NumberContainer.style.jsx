@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import Colors from "../../utils/colors";
+import Colors from "../../../utils/colors";
 
 export default StyleSheet.create({
     container: {
@@ -16,4 +16,4 @@ export default StyleSheet.create({
         fontFamily: 'open-sans-bold',
         fontSize: 36,
     }
-})
+});

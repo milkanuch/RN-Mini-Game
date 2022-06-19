@@ -13,5 +13,8 @@ export default StyleSheet.create({
     },
     instructionText: {
         marginBottom: 10
+    },
+    listContainer: { 
+        flex: 1
     }
 });

@@ -1,33 +1,38 @@
 import { useEffect, useState } from "react";
-import { Alert,  View } from "react-native";
+import { Alert,  FlatList,  Text,  View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-import NumberContainer from "../../components/Game/NumberContainer";
+import NumberContainer from "../../components/Game/NumberContainer/NumberContainer";
 import Card from "../../components/UI/Card/Card";
 import InstructionText from "../../components/UI/InstructionText/InstructionText";
 import MainButton from "../../components/UI/MainButton/MainButton";
 import Title from "../../components/UI/Title/Title";
 import styles from "./GameScreen.style";
+import GuessLogItem from "../../components/Game/LogItem/GuessLogItem";
 
-export default function GameScreen({userNumber,onGameOver}){
-    let minBoundary = 1,maxBoundary = 100;
+let minBoundary = 1,maxBoundary = 100;
+
+function generateRandomBetween(min,max,exclude) {
+    const randNumber = Math.floor(Math.random() * (max-min)) + min;
+    return randNumber === exclude 
+        ? generateRandomBetween(max,min,exclude) 
+        : randNumber;
+}
+export default function GameScreen({ userNumber,onGameOver }) {
     const initialGuess = generateRandomBetween(1,100,userNumber);
-
     const [currentGuess,setCurrentGuess] = useState(initialGuess);
-
-    function generateRandomBetween(min,max,exclude){
-        const randNumber = Math.floor(Math.random() * (max-min)) + min;
-        return randNumber === exclude 
-            ? generateRandomBetween(max,min,exclude) 
-            : randNumber;
-    }
+    const [guessRounds,setGuessRounds] = useState([]);
 
     useEffect(() => { 
-        if(currentGuess === userNumber){
-            onGameOver();
+        if(currentGuess === userNumber) {
+            onGameOver(guessRounds.length);
         }
     }, [currentGuess,userNumber,onGameOver]);
 
+    useEffect(() => { 
+        minBoundary = 1;
+        maxBoundary = 100;
+    },[])
 
     function nextGuessHandler(direction) {
         if((direction === 'lower' && currentGuess < userNumber) 
@@ -42,7 +47,9 @@ export default function GameScreen({userNumber,onGameOver}){
         else {
             minBoundary = currentGuess + 1;
         }
-        setCurrentGuess(generateRandomBetween(minBoundary,maxBoundary,currentGuess));
+        const newRandNumber = generateRandomBetween(minBoundary,maxBoundary,currentGuess);
+        setCurrentGuess(newRandNumber);
+        setGuessRounds(prevGuessRounds => [newRandNumber,...prevGuessRounds]);
     }
 
     return (
@@ -64,8 +71,12 @@ export default function GameScreen({userNumber,onGameOver}){
                     </View>
                 </View>
             </Card>
-            <View>
-                
+            <View style={ styles.listContainer }>
+                <FlatList 
+                    data={guessRounds} 
+                    renderItem={(itemData) => <GuessLogItem roundNumber={guessRounds.length - itemData.index} guess={itemData.item}/>}
+                    keyExtractor={(item) => item}
+                />
             </View>
         </View>
     )

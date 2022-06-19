@@ -7,4 +7,4 @@ export default StyleSheet.create({
         color: Colors.accent500,
         fontSize: 24
     }
-})
+});
