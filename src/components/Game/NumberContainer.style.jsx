@@ -13,7 +13,7 @@ export default StyleSheet.create({
     },
     numberText: {
         color: Colors.accent500,
+        fontFamily: 'open-sans-bold',
         fontSize: 36,
-        fontWeight: 'bold'
     }
 })
