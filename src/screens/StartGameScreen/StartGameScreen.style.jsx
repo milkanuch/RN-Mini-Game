@@ -2,9 +2,11 @@ import { StyleSheet } from "react-native";
 import Colors from "../../utils/colors";
 
 export default StyleSheet.create({
+    screen: { 
+        flex: 1
+    },
     rootContainer: {
         flex: 1,
-        marginTop: 100,
         alignItems: 'center'
     },
     numberInput: { 

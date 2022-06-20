@@ -1,4 +1,4 @@
-import { Alert, TextInput, View } from "react-native";
+import { Alert, KeyboardAvoidingView, ScrollView, TextInput, useWindowDimensions, View } from "react-native";
 import { useState } from "react";
 
 import styles from "./StartGameScreen.style";
@@ -10,6 +10,8 @@ import InstructionText from "../../components/UI/InstructionText/InstructionText
 
 export default function StatGameScreen({onPickNumber}) {
     const [eneteredNumber,setEnteredNumber] = useState('');
+    const { width,height } = useWindowDimensions();
+
 
     function numberInputHandler(eneteredText){
         setEnteredNumber(eneteredText);
@@ -32,27 +34,31 @@ export default function StatGameScreen({onPickNumber}) {
     }
 
     return (
-        <View style={styles.rootContainer}>
-            <Title>Guess My Number</Title>
-                <Card>
-                    <InstructionText>Enter a number between 1-100</InstructionText>
-                    <TextInput
-                        style={styles.numberInput}
-                        maxLength={2}
-                        keyboardType="number-pad"
-                        autoCorrect={false}
-                        onChangeText={numberInputHandler}
-                        value={eneteredNumber}
-                    />
-                    <View style={styles.buttonsContainer}>
-                        <View style={styles.buttonContainer}>
-                            <MainButton onPress={resetInputHandler}>Reset</MainButton>
-                        </View>
-                        <View style={styles.buttonContainer}>
-                            <MainButton onPress={confirmInputHandler}>Confirm</MainButton>
-                        </View>
-                    </View> 
-                </Card>
-        </View>
+        <ScrollView style={styles.screen}>
+            <KeyboardAvoidingView style={ styles.screen } behavior="position" >
+                <View style={ [styles.rootContainer,{ marginTop: height < 450 ? 30 : 100 }] }>
+                    <Title>Guess My Number</Title>
+                        <Card>
+                            <InstructionText>Enter a number between 1-100</InstructionText>
+                            <TextInput
+                                style={styles.numberInput}
+                                maxLength={2}
+                                keyboardType="number-pad"
+                                autoCorrect={false}
+                                onChangeText={numberInputHandler}
+                                value={eneteredNumber}
+                            />
+                            <View style={styles.buttonsContainer}>
+                                <View style={styles.buttonContainer}>
+                                    <MainButton onPress={resetInputHandler}>Reset</MainButton>
+                                </View>
+                                <View style={styles.buttonContainer}>
+                                    <MainButton onPress={confirmInputHandler}>Confirm</MainButton>
+                                </View>
+                            </View> 
+                        </Card>
+                </View>
+            </KeyboardAvoidingView>
+        </ScrollView>
     );
 }

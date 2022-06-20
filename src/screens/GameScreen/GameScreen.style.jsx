@@ -4,6 +4,7 @@ export default StyleSheet.create({
     screen: {
         flex: 1,
         padding: 36,
+        alignItems: 'center'
     },
     buttonsContainer: {
         flexDirection: 'row'

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Alert,  FlatList,  Text,  View } from "react-native";
+import { Alert,  FlatList,  Text,  useWindowDimensions,  View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import NumberContainer from "../../components/Game/NumberContainer/NumberContainer";
@@ -51,6 +51,7 @@ export default function GameScreen({ userNumber,onGameOver }) {
         setCurrentGuess(newRandNumber);
         setGuessRounds(prevGuessRounds => [newRandNumber,...prevGuessRounds]);
     }
+    
 
     return (
         <View style={styles.screen}>

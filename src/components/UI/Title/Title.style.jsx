@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     title: { 
@@ -6,8 +6,10 @@ export default StyleSheet.create({
         fontSize: 24,
         color: '#f0f0f0',
         textAlign:'center',
-        borderWidth: 2,
+        borderWidth: Platform.select({ios: 2,android: 3}),
         borderColor: '#f0f0f0',
-        padding: 12
+        padding: 12,
+        maxWidth: '80%',
+        width: 300
     }
 });

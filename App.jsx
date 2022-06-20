@@ -8,6 +8,7 @@ import StatGameScreen from './src/screens/StartGameScreen/StartGameScreen';
 import Colors from "./src/utils/colors";
 import * as SplashScreen from "expo-splash-screen";
 import * as Font from 'expo-font';
+import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
   const [userNumber,setUserNumber] = useState(null);
@@ -43,12 +44,12 @@ export default function App() {
     return null;
   }
   
-  function pickedNumberHandler(pickedNumber){ 
+  function pickedNumberHandler(pickedNumber) { 
     setUserNumber(pickedNumber);
     setGameIsOver(false);
   }
 
-  function gameOverHandler(numberOfRounds){
+  function gameOverHandler(numberOfRounds) {
     setGameIsOver(true);
     setGuessRounds(numberOfRounds);
   }
@@ -64,19 +65,22 @@ export default function App() {
 
   //yay,i know inline styles is bad but i too lazy for make stylesheet object:)
   return (
-      <LinearGradient colors={[Colors.primary700,Colors.accent500]} style={{flex:1}}>
-          <ImageBackground 
-            source={require('./assets/images/background.png')} 
-            resizeMode="cover"
-            style={{flex:1}}
-            imageStyle={{opacity:0.30}}
-          > 
-            <View onLayout={onLayoutRootView}></View>
-            <SafeAreaView style={{flex:1}}>
-              { screen }
-            </SafeAreaView>
-          </ImageBackground>
-      </LinearGradient>
+        <>
+          <StatusBar style='light'></StatusBar>
+          <LinearGradient colors={[Colors.primary700,Colors.accent500]} style={{flex:1}}>
+              <ImageBackground 
+                source={require('./assets/images/background.png')} 
+                resizeMode="cover"
+                style={{flex:1}}
+                imageStyle={{opacity:0.30}}
+              > 
+                <View onLayout={onLayoutRootView}></View>
+                <SafeAreaView style={{flex:1}}>
+                  { screen }
+                </SafeAreaView>
+              </ImageBackground>
+          </LinearGradient>
+        </>
   );
 }
 
